@@ -17,8 +17,24 @@ public class IvPlanet {
                 sc.nextLine();//������� �� ���� ������ �����, ��� ��� ������ ���� �������� �������
                 for (int j = 1; j <= kPlanets; j++) {
                     Planet planet = new Planet(i+"."+j);
-                    String planetStr = sc.nextLine();
                     levels[i].planets.add(planet);
+                    String planetStr = sc.nextLine();
+                    String[] masPlStr = planetStr.replace("0", " ").split(" ");
+                    int[] res = new int[masPlStr.length];
+                    for (int k = 0; k < masPlStr.length; k++) {
+                        res[k] = Integer.parseInt(masPlStr[k]);
+                    }
+                    System.out.println(Arrays.toString(res));
+//                    planetStr.split("0");
+//                    Tunnel[] a = new Tunnel[kPlanets];
+//                    for (int k = 0; k < planetStr.length(); k++) {
+//                        a[i] = new Tunnel();
+//                        levels[i].planets
+//
+//                    }
+
+//                    System.out.println(planetStr);
+
 
                 }
                 if (sc.hasNext())
@@ -26,60 +42,44 @@ public class IvPlanet {
             }
             levels[0]= new PlanetLevel();
             levels[0].planets.add(new Planet("0.1"));
-            for (int i = 0; i < kolvoLevels ; i++) {
-                printPlanets(levels[i]);
+            for (int i = 0; i < kolvoLevels + 1; i++) {
+                System.out.println(levels[i]);
             }
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-
-    }
-    public static void printPlanets(PlanetLevel p){
-        for (Planet ints: p.planets) {
-                System.out.println(ints);
-            }
-        }
     }
 
+}
 class Planet{
     String name;
-
     public Planet(String name) {
         this.name = name;
     }
-
     @Override
     public String toString() {
-        return "Planet{" +
-                name +
-                '}';
+        return "Planet{" + name + '}';
     }
 }
-
 class Tunnel{
     Planet from, to;
     int cost;
 }
-
 class PlanetLevel{
     ArrayList<Planet> planets=new ArrayList<>();
 
     @Override
     public String toString() {
-        return "PlanetLevel{" +
-                "planets=" + planets +
-                '}';
+        return "PlanetLevel{" + planets + '}';
     }
 }
-
 class Path{
     ArrayList<Tunnel> tunnels=new ArrayList<>();
     public void add(Tunnel t)
     {
         tunnels.add(t);
     }
-
     public int getCost()
     {
         int sum=0;
@@ -89,3 +89,9 @@ class Path{
         return sum;
     }
 }
+
+//    public static void printPlanets(PlanetLevel p){
+//        for (Planet ints: p.planets) {
+//            System.out.println(ints);
+//        }
+//    }
